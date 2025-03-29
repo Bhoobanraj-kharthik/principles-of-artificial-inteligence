@@ -1,0 +1,36 @@
+Experiment 2: DFS (Depth-First Search) on a Graph
+Aim:
+To traverse a graph using DFS and print the visited nodes.
+
+Procedure:
+Represent the graph as an adjacency list.
+
+Start from a source node, explore as deep as possible before backtracking.
+
+Track visited nodes to avoid cycles.
+
+Program (Python):
+def dfs(graph, node, visited=None):
+    if visited is None: visited = set()
+    visited.add(node)
+    print(node, end=" ")
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+# Example graph (adjacency list)
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+print("DFS Traversal:")
+dfs(graph, 'A')
+Output:
+DFS traversal order (e.g., A B D E F C).
+
+Result:
+The program correctly traverses the graph in DFS order, visiting all nodes exactly once.
