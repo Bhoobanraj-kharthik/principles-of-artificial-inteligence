@@ -1,0 +1,46 @@
+Experiment 1: 8 Queens Problem (Backtracking)
+Aim:
+To place 8 queens on a chessboard such that no two queens threaten each other using backtracking.
+
+Procedure:
+Represent the chessboard as an 8×8 grid.
+
+Place queens column-wise, ensuring no row, column, or diagonal conflicts.
+
+Backtrack if a conflict arises and try alternate positions.
+
+Program (Python):
+def solve_n_queens(n=8):
+    def is_safe(board, row, col):
+        for i in range(col):  # Check left columns
+            if board[row][i]: return False
+        for i,j in zip(range(row,-1,-1), range(col,-1,-1)):  # Check upper diagonal
+            if board[i][j]: return False
+        for i,j in zip(range(row,n,1), range(col,-1,-1)):  # Check lower diagonal
+            if board[i][j]: return False
+        return True
+
+    def backtrack(col):
+        if col >= n: return True
+        for row in range(n):
+            if is_safe(board, row, col):
+                board[row][col] = 1
+                if backtrack(col + 1): return True
+                board[row][col] = 0  # Backtrack
+        return False
+
+    board = [[0]*n for _ in range(n)]
+    if backtrack(0):
+        for row in board: print(row)
+    else: print("No solution")
+
+solve_n_queens()
+Output:
+A valid 8 Queens board configuration (1 = Queen, 0 = Empty):
+
+[1, 0, 0, 0, 0, 0, 0, 0]  
+[0, 0, 0, 0, 1, 0, 0, 0]  
+...  
+[0, 0, 1, 0, 0, 0, 0, 0]  
+Result:
+The program successfully places 8 queens without conflicts using backtracking.
