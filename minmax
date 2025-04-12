@@ -1,0 +1,52 @@
+Aim: To determine the best possible move for a player, assuming the opponent also plays optimally.
+
+Procedure: The algorithm explores all possible moves in a game tree, evaluates their outcomes, and selects the move that maximizes the player's advantage while minimizing the opponent's.
+
+Algorithm:
+
+Start at the root of the game tree.
+
+Recursively evaluate the utility of each node, alternating between maximizing and minimizing players.
+
+Propagate the utility values back up the tree to determine the optimal move.
+
+
+def minimax(node, depth, maximizing_player):
+    if depth == 0 or is_terminal(node):
+        return evaluate(node)
+
+    if maximizing_player:
+        max_eval = float('-inf')
+        for child in get_children(node):
+            eval = minimax(child, depth - 1, False)
+            max_eval = max(max_eval, eval)
+        return max_eval
+    else:
+        min_eval = float('inf')
+        for child in get_children(node):
+            eval = minimax(child, depth - 1, True)
+            min_eval = min(min_eval, eval)
+        return min_eval
+
+# Example usage
+def is_terminal(node):
+    # Define terminal condition
+    pass
+
+def evaluate(node):
+    # Define evaluation function
+    pass
+
+def get_children(node):
+    # Define function to get child nodes
+    pass
+
+# Call the minimax function
+root_node = "example_node"
+depth = 3
+best_move = minimax(root_node, depth, True)
+print("Best Move:", best_move)
+
+Output: The best move for the current player.
+
+Result: A strategy that ensures the best possible outcome for the player, given the opponent's optimal play.
